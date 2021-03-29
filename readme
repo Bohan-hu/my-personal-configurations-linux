@@ -1,0 +1,6 @@
+- Place `.zshrc`, `fish_prompt.sh` and `.zshrc.my` at `~`, then `source ~/.zshrc`
+- Install `Neovim` and `vim-plugged`, put `init.vim` and `coc-settings.json` at `~/.config/nvim/`. In nvim, run `PlugInstall`.
+- For CoC, install node first. Then in nvim, run `CoCInstall coc-metals` and `CoCInstall coc-clangd` to install extensions for Cpp and scala.
+- Install `tmux`, put `.tmux.conf` at `~`. At tmux, type `ctrl-B`, and then input `:source ~/.tmux.conf`
+- Remember to swap `Ctrl` and `Caps lock`.
+
