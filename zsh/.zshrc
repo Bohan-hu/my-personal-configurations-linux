@@ -3,27 +3,27 @@ ANTIGEN="$HOME/.local/bin/antigen.zsh"
 
 # Install antigen.zsh if not exist
 if [ ! -f "$ANTIGEN" ]; then
-	echo "Installing antigen ..."
-	[ ! -d "$HOME/.local" ] && mkdir -p "$HOME/.local" 2> /dev/null
-	[ ! -d "$HOME/.local/bin" ] && mkdir -p "$HOME/.local/bin" 2> /dev/null
-	# [ ! -f "$HOME/.z" ] && touch "$HOME/.z"
-	URL="http://git.io/antigen"
-	TMPFILE="/tmp/antigen.zsh"
-	if [ -x "$(which curl)" ]; then
-		curl -L "$URL" -o "$TMPFILE" 
-	elif [ -x "$(which wget)" ]; then
-		wget "$URL" -O "$TMPFILE" 
-	else
-		echo "ERROR: please install curl or wget before installation !!"
-		exit
-	fi
-	if [ ! $? -eq 0 ]; then
-		echo ""
-		echo "ERROR: downloading antigen.zsh ($URL) failed !!"
-		exit
-	fi;
-	echo "move $TMPFILE to $ANTIGEN"
-	mv "$TMPFILE" "$ANTIGEN"
+        echo "Installing antigen ..."
+        [ ! -d "$HOME/.local" ] && mkdir -p "$HOME/.local" 2> /dev/null
+        [ ! -d "$HOME/.local/bin" ] && mkdir -p "$HOME/.local/bin" 2> /dev/null
+        # [ ! -f "$HOME/.z" ] && touch "$HOME/.z"
+        URL="http://git.io/antigen"
+        TMPFILE="/tmp/antigen.zsh"
+        if [ -x "$(which curl)" ]; then
+                curl -L "$URL" -o "$TMPFILE"
+        elif [ -x "$(which wget)" ]; then
+                wget "$URL" -O "$TMPFILE"
+        else
+                echo "ERROR: please install curl or wget before installation !!"
+                exit
+        fi
+        if [ ! $? -eq 0 ]; then
+                echo ""
+                echo "ERROR: downloading antigen.zsh ($URL) failed !!"
+                exit
+        fi;
+        echo "move $TMPFILE to $ANTIGEN"
+        mv "$TMPFILE" "$ANTIGEN"
 fi
 
 
@@ -54,7 +54,7 @@ alias d='dirs -v | head -10'
 # Disable correction
 unsetopt correct_all
 unsetopt correct
-DISABLE_CORRECTION="true" 
+DISABLE_CORRECTION="true"
 
 # Enable 256 color to make auto-suggestions look nice
 export TERM="xterm-256color"
@@ -71,17 +71,17 @@ zstyle ':prezto:module:terminal' auto-title 'yes'
 zstyle ':prezto:module:autosuggestions' color 'yes'
 zstyle ':prezto:module:python' autovenv 'yes'
 zstyle ':prezto:load' pmodule \
-	'environment' \
-	'editor' \
-	'history' \
-	'git' \
-	'utility' \
-	'completion' \
-	'history-substring-search' \
-	'autosuggestions' \
-	'prompt' \
+        'environment' \
+        'editor' \
+        'history' \
+        'git' \
+        'utility' \
+        'completion' \
+        'history-substring-search' \
+        'autosuggestions' \
+        'prompt' \
 
-	# 'autosuggestions' \
+        # 'autosuggestions' \
 
 # Initialize prezto
 antigen use prezto
@@ -98,8 +98,8 @@ antigen bundle willghatch/zsh-cdr
 
 # check login shell
 if [[ -o login ]]; then
-	[ -f "$HOME/.local/etc/login.sh" ] && source "$HOME/.local/etc/login.sh"
-	[ -f "$HOME/.local/etc/login.zsh" ] && source "$HOME/.local/etc/login.zsh"
+        [ -f "$HOME/.local/etc/login.sh" ] && source "$HOME/.local/etc/login.sh"
+        [ -f "$HOME/.local/etc/login.zsh" ] && source "$HOME/.local/etc/login.zsh"
 fi
 
 # syntax color definition
@@ -107,9 +107,8 @@ ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 
 typeset -A ZSH_HIGHLIGHT_STYLES
 
-# ZSH_HIGHLIGHT_STYLES[command]=fg=white,bold
-# ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
-
+ZSH_HIGHLIGHT_STYLES[command]=fg=white,bold
+ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
 ZSH_HIGHLIGHT_STYLES[default]=none
 ZSH_HIGHLIGHT_STYLES[unknown-token]=fg=009
 ZSH_HIGHLIGHT_STYLES[reserved-word]=fg=009,standout
@@ -133,7 +132,7 @@ ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]=fg=009
 ZSH_HIGHLIGHT_STYLES[assign]=none
 
 # load local config
-[ -f "$HOME/.local/etc/config.zsh" ] && source "$HOME/.local/etc/config.zsh" 
+[ -f "$HOME/.local/etc/config.zsh" ] && source "$HOME/.local/etc/config.zsh"
 [ -f "$HOME/.local/etc/local.zsh" ] && source "$HOME/.local/etc/local.zsh"
 
 antigen apply
@@ -184,6 +183,7 @@ bindkey '\e[1;3B' end-of-line
 
 bindkey '^B' backward-word
 bindkey '^F' forward-word
+bindkey -s '^E' 'vim\n'
 
 bindkey '\ev' deer
 bindkey -s '\eu' 'ranger_cd\n'
@@ -196,24 +196,52 @@ bindkey -s '\eOS' 'vim '
 # Disable correction
 unsetopt correct_all
 unsetopt correct
-DISABLE_CORRECTION="true" 
+DISABLE_CORRECTION="true"
 
 # completion detail
 zstyle ':completion:*:complete:-command-:*:*' ignored-patterns '*.pdf|*.exe|*.dll'
 zstyle ':completion:*:*sh:*:' tag-order files
 
-source ~/.zshrc.my
-source ~/prompt_fish.sh
+# source ~/prompt_fish.sh
+# if [ -n "$BASH_VERSION" ]; then
+#     if [ "$UID" -eq 0 ]; then
+#         export PS1='\u@\h \[\e[31m\]$(_fish_collapsed_pwd)\[\e[0m\]# '
+#     else
+#         export PS1='\u@\h \[\e[32m\]$(_fish_collapsed_pwd)\[\e[0m\]> '
+#     fi
+# else
+#     if [ $UID -eq 0 ]; then
+#         export PROMPT='%f%n@%m %F{1}$(_fish_collapsed_pwd)%f# '
+#     else
+#         export PROMPT='%f%n@%m %F{2}$(_fish_collapsed_pwd)%f> '
+#     fi
+# fi
 if [ -n "$BASH_VERSION" ]; then
-    if [ "$UID" -eq 0 ]; then
-        export PS1='\u@\h \[\e[31m\]$(_fish_collapsed_pwd)\[\e[0m\]# '
-    else
-        export PS1='\u@\h \[\e[32m\]$(_fish_collapsed_pwd)\[\e[0m\]> '
-    fi
+    export PS1='\[\e[38;5;135m\]\u\[\e[0m\]@\[\e[38;5;166m\]\h\[\e[0m\] \[\e[38;5;118m\]\w\[\e[0m\] \$ '
 else
-    if [ $UID -eq 0 ]; then
-        export PROMPT='%f%n@%m %F{1}$(_fish_collapsed_pwd)%f# '
+    if [ "$UID" -eq 0 ]; then
+        export PROMPT="%F{135}%n%f@%F{166}%m%f %F{118}%~%f %# "
     else
-        export PROMPT='%f%n@%m %F{2}$(_fish_collapsed_pwd)%f> '
+        export PROMPT="%F{135}%n%f@%F{166}%m%f %F{118}%~%f \$ "
     fi
 fi
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+#if [[ -z "$TMUX"  ]] && [ "$SSH_CONNECTION" != ""  ]; then
+if [[ -z "$TMUX"  ]] ; then
+   tmux attach || tmux new
+fi
+
+source ~/scripts/alias.sh
+source ~/scripts/path.sh
+source ~/scripts/var.sh
+#source ~/scripts/wsl_ip.sh
+
+export LM_LICENSE_FILE=27000@192.168.63.22:27001@192.168.63.22:27002@192.168.63.22:5280@192.168.63.22:1717@192.168.63.22:5280@192.168.65.132
+export VERDI_HOME=/eda/tools/snps/verdi/P-2019.06-SP1-1
+export PATH=$VERDI_HOME/bin:$PATH
+
+export STD_PATH=/eda/lib/tsmc/tsmc28nmhpcplus/TSMCHOME/digital/Front_End/verilog
+export VCS_HOME=/eda/tools/snps/vcs/Q-2020.03-SP2
+export PATH=$VCS_HOME/bin:$PATH
+alias syncpull='bash ~/scripts/pull.sh'
+alias syncpush='bash ~/scripts/push.sh'

@@ -21,12 +21,16 @@ call plug#begin('~/.config/vim_plug/plugged')
     Plug 'majutsushi/tagbar'
     Plug 'godlygeek/tabular'
     Plug 'liuchengxu/vista.vim'
+    Plug 'voldikss/vim-floaterm'
+    Plug 'rust-lang/rust.vim'
+    Plug 'tpope/vim-obsession'
+    "Plug 'puremourning/vimspector'
 call plug#end()
 " Windows adjustation
-noremap <leader>-= <c-w>+
-noremap a- <c-w>-
-noremap < <c-w><
-noremap > <c-w>>
+" noremap <leader>-= <c-w>+
+" noremap a- <c-w>-
+" noremap < <c-w><
+" noremap > <c-w>>
 noremap <leader><space> :FZF<cr>
 filetype plugin on
 " 设置为双字宽显示，否则无法完整显示如:☆
@@ -83,7 +87,7 @@ let g:sonokai_style = 'shusia'
 " let g:sonokai_enable_italic = 1
 " let g:sonokai_disable_italic_comment = 1
 colo sonokai
-set background=dark
+" set background=dark
 " hi CursorLine ctermfg=NONE ctermbg=NONE cterm=NONE
 hi Normal ctermfg=NONE ctermbg=235 guifg=NONE
 hi LineNr ctermfg=yellow ctermbg=236 cterm=NONE
@@ -134,13 +138,13 @@ let NERDTreeDirArrows = 1
 nnoremap <leader>e :bd<cr>
 nnoremap <leader>t :TagbarToggle<CR> " 将tagbar的开关按键设置为 F4
 nnoremap <leader>p :set paste<CR>i
-nnoremap <leader>o :set nopaste<CR> 
+nnoremap <leader>o :set nopaste<CR>
 nnoremap <leader>sf :set foldmethod=manual<CR>
-nnoremap <leader>df :set foldmethod=indent<CR> 
+nnoremap <leader>df :set foldmethod=indent<CR>
 nnoremap <leader>sa :set mouse=a<CR>
-nnoremap <leader>da :set mouse=<CR> 
+nnoremap <leader>da :set mouse=<CR>
 nnoremap <leader>n :NERDTreeToggle<CR> " 开启/关闭nerdtree快捷键
-nmap <tab> :bn<cr> 
+nmap <tab> :bn<cr>
 map <c-h> 0
 map <c-l> $
 " nnoremap j gj
@@ -500,3 +504,4 @@ nnoremap <silent> <space>tb :<C-u>CocCommand metals.tvp metalsBuild<CR>
 " Reveal current current class (trait or object) in Tree View 'metalsPackages'
 nnoremap <silent> <space>tf :<C-u>CocCommand metals.revealInTreeView metalsPackages<CR>
 set clipboard+=unnamedplus
+
